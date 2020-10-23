@@ -7,15 +7,17 @@ const createArrows = () => {
   nextButton.setAttribute('type', 'button')
   prevButton.setAttribute('type', 'button')
 
-  // Add classes
-  nextButton.classList.add('nick-next-btn')
-  prevButton.classList.add('nick-prev-btn')
+  nextButton.setAttribute('data-nick', 'nick-next-btn')
+  prevButton.setAttribute('data-nick', 'nick-prev-btn')
 
   // Add controls
   nextButton.innerHTML = '⯈'
   prevButton.innerHTML = '⯇'
 
-  return [nextButton, prevButton]
+  return {
+    createdNextBtn: nextButton,
+    createdPrevBtn: prevButton
+  }
 }
 
 export { createArrows }

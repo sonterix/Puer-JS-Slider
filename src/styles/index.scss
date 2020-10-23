@@ -3,12 +3,12 @@
   padding: 10px 15px;
   max-width: 850px;
 
-  #slider {
+  [data-nick='nick-wrapper'] {
     position: relative;
     height: 450px;
     overflow: hidden;
 
-    .nick-slider {
+    [data-nick='nick-slider'] {
       display: flex;
       flex-wrap: nowrap;
       position: absolute;
@@ -17,7 +17,7 @@
       width: 100%;
       height: inherit;
 
-      .nick-slide {
+      [data-nick='nick-slide'] {
         min-width: 100%;
         height: inherit;
         background-size: cover;
@@ -26,8 +26,8 @@
       }
     }
 
-    .nick-next-btn,
-    .nick-prev-btn {
+    [data-nick='nick-next-btn'],
+    [data-nick='nick-prev-btn'] {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,11 +56,11 @@
       }
     }
 
-    .nick-next-btn {
+    [data-nick='nick-next-btn'] {
       right: 10px;
     }
 
-    .nick-prev-btn {
+    [data-nick='nick-prev-btn'] {
       left: 10px;
     }
   }

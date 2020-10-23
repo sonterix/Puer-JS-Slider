@@ -1,4 +1,5 @@
 import { disableArrows } from '@models/helpers/disablers'
+import config from '@models/config'
 
 // Handle to create next slide button
 const toNextSlide = () => {
@@ -6,11 +7,11 @@ const toNextSlide = () => {
   disableArrows()
 
   // Get slider wrrapper and left value of the wrapper. Left value conver to number
-  const sliderWrapper = nickWrapper.querySelector('.nick-slider')
+  const sliderWrapper = document.querySelector('[data-nick="nick-slider"]')
   const sliderWrapperLeft = +getComputedStyle(sliderWrapper).left.replace('px', '')
 
   // Get current active and next active slides
-  const activeSlide = nickWrapper.querySelector('.nick-slider .nick-slide.active')
+  const activeSlide = document.querySelector('[data-nick="nick-slider"] [data-nick="nick-slide"].active')
   const nextAfterActive = activeSlide.nextSibling
 
   // Move to next slide
@@ -32,11 +33,11 @@ const toPrevSlide = () => {
   disableArrows()
 
   // Get slider wrrapper and left value of the wrapper. Left value conver to number
-  const sliderWrapper = nickWrapper.querySelector('.nick-slider')
+  const sliderWrapper = document.querySelector('[data-nick="nick-slider"]')
   const sliderWrapperLeft = +getComputedStyle(sliderWrapper).left.replace('px', '')
 
   // Get current active and next active slides
-  const activeSlide = nickWrapper.querySelector('.nick-slider .nick-slide.active')
+  const activeSlide = document.querySelector('[data-nick="nick-slider"] [data-nick="nick-slide"].active')
   const prevAfterActive = activeSlide.previousSibling
 
   // Move to next slide
