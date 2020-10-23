@@ -1,29 +1,28 @@
-import { createSlides } from '@models/creators/slidesCreator'
-import { createArrows } from '@models/creators/arrowsCreator'
-import { toNextSlide, toPrevSlide } from '@models/actions/arrowActions'
+import createSlides from '@models/creators/createSlides'
+import createArrows from '@models/creators/createArrows'
+import createWrapper from '@models/creators/createWrapper'
+import listener from '@models/listener'
+import CONFIG from '@models/config'
 
-const nickSlider = (nickWrapper, nickSlides, nickConfig) => {
-  nickWrapper.setAttribute('data-nick', 'nick-wrapper')
+const NickSlider = (nickWrapper, nickSlidesURLs) => {
+  // Config wrapper
+  createWrapper(nickWrapper)
 
-  // Get slider elements
-  const createdSlides = createSlides(nickSlides)
-  const { createdNextBtn, createdPrevBtn } = createArrows()
+  // Get slider elements and set first slide active
+  const createdSlides = createSlides(nickSlidesURLs)
+  createdSlides.querySelector('[data-nick="nick-slide"]').classList.add('active')
 
-  // Add slider to the DOM
+  // Get arrows
+  const [createdNextBtn, createdPrevBtn] = CONFIG.arrows ? createArrows() : ['', '']
+
+  // Add slider elements to the DOM
   nickWrapper.append(createdSlides, createdNextBtn, createdPrevBtn)
 
-  // Buttons listeners
-  const nextButton = nickWrapper.querySelector('[data-nick="nick-next-btn"]')
-  const prevButton = nickWrapper.querySelector('[data-nick="nick-prev-btn"]')
-  nextButton.addEventListener('click', () => (!nextButton.classList.contains('disabled') ? toNextSlide() : {}))
-  prevButton.addEventListener('click', () => (!prevButton.classList.contains('disabled') ? toPrevSlide() : {}))
+  // Slider listener
+  nickWrapper.addEventListener('click', listener)
 
-  nickWrapper.addEventListener('click', ({ target }) => {
-    console.log(target)
-  })
-
-  // Set first slide active
-  nickWrapper.querySelector('[data-nick="nick-slider"] [data-nick="nick-slide"]').classList.add('active')
+  // Return fuction to disable slider
+  return () => nickWrapper.removeEventListener('click', listener)
 }
 
-export default nickSlider
+export default NickSlider

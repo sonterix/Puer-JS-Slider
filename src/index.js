@@ -1,6 +1,4 @@
-import config from '@models/config'
-import nickSlider from '@models/nickSlider'
-
+import NickSlider from '@models/NickSlider'
 import './styles/index.scss'
 
 const slider = document.querySelector('#slider')
@@ -12,4 +10,5 @@ const images = [
   'https://www.wasaweb.net/images/stock-images/851x315/xLondon-228.jpg.pagespeed.ic.E1pi6Mnw7T.jpg'
 ]
 
-nickSlider(slider, images, config)
+// Init slider and get function to disable slider
+const disableSlider = NickSlider(slider, images)

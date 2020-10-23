@@ -1,8 +1,11 @@
-const config = {
-  loop: false,
-  arrows: true,
-  dots: false,
-  transitionSpeed: 400
+const CONFIG = {
+  loop: false, // loop slider
+  arrows: true, // show arrows
+  dots: false, // show dots
+  transitionSpeed: 400, // animation speed of the slide switch
+  maxWidth: '100%', // slider max width
+  width: '100%', // slider width
+  height: '450px' // slider height
 }
 
-export default config
+export default CONFIG
