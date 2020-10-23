@@ -1,0 +1,22 @@
+{
+  "name": "nick-slider",
+  "version": "1.0.0",
+  "description": "Pure JS slider",
+  "main": "index.html",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack-dev-server --config webpack.config.js --open"
+  },
+  "author": "sonterixo@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^5.0.0",
+    "html-webpack-plugin": "^4.5.0",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.4",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
