@@ -22,5 +22,13 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: '3005'
+  },
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+      '@models': path.resolve(__dirname, 'src/models/'),
+      '@styles': path.resolve(__dirname, 'src/styles/')
+    }
   }
 }
