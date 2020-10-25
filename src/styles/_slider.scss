@@ -1,22 +1,57 @@
 [data-nick='nick-wrapper'] {
   position: relative;
-  overflow: hidden;
 
   [data-nick='nick-slider'] {
-    display: flex;
-    flex-wrap: nowrap;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: inherit;
     width: 100%;
     height: inherit;
+    overflow: hidden;
 
-    [data-nick='nick-slide'] {
-      min-width: 100%;
+    [data-nick='nick-slider-screen'] {
+      display: flex;
+      flex-wrap: nowrap;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: inherit;
       height: inherit;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+
+      [data-nick='nick-slide'] {
+        min-width: 100%;
+        width: inherit;
+        height: inherit;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  [data-nick='nick-dots'] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: -25px;
+    transform: translateX(-50%);
+
+    [data-nick='nick-dot'] {
+      margin: 5px;
+      width: 10px;
+      height: 10px;
+      background-color: $color-light-grey;
+      border-radius: 50%;
+      transition: background-color $trans;
+      cursor: pointer;
+
+      &:not(.active):hover {
+        background-color: $color-grey;
+      }
+
+      &.active {
+        background-color: $color-rose;
+      }
     }
   }
 
@@ -38,10 +73,15 @@
     background-color: rgba($color-white, 0.6);
     border: 0;
     border-radius: 50%;
-    transition: background-color 0.5s ease;
+    transition: color $trans-sm, background-color $trans;
     cursor: pointer;
 
     &:hover {
+      background-color: $color-white;
+    }
+
+    &:active {
+      color: $color-rose;
       background-color: $color-white;
     }
   }

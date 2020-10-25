@@ -1,4 +1,5 @@
 import createSlides from '@models/creators/createSlides'
+import createDots from '@models/creators/createDots'
 import createArrows from '@models/creators/createArrows'
 import createWrapper from '@models/creators/createWrapper'
 import listener from '@models/listener'
@@ -8,15 +9,15 @@ const NickSlider = (nickWrapper, nickSlidesURLs) => {
   // Config wrapper
   createWrapper(nickWrapper)
 
-  // Get slider elements and set first slide active
+  // Get slider elements
   const createdSlides = createSlides(nickSlidesURLs)
-  createdSlides.querySelector('[data-nick="nick-slide"]').classList.add('active')
-
+  // Get dost elements
+  const createdDots = CONFIG.dots ? createDots(nickSlidesURLs) : ['']
   // Get arrows
   const [createdNextBtn, createdPrevBtn] = CONFIG.arrows ? createArrows() : ['', '']
 
   // Add slider elements to the DOM
-  nickWrapper.append(createdSlides, createdNextBtn, createdPrevBtn)
+  nickWrapper.append(createdSlides, createdDots, createdNextBtn, createdPrevBtn)
 
   // Slider listener
   nickWrapper.addEventListener('click', listener)

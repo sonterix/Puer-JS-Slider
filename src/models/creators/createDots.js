@@ -1,7 +1,7 @@
 const createArrows = slides => {
   // Wrapper for dots
   const dots = document.createElement('div')
-  dotsWrapper.setAttribute('data-nick', 'nick-dots')
+  dots.setAttribute('data-nick', 'nick-dots')
 
   // Generate dots base on slides amount
   slides.forEach((_, index) => {
@@ -14,6 +14,9 @@ const createArrows = slides => {
     // Add dot to dots
     dots.appendChild(dot)
   })
+
+  // Set first dot active
+  dots.querySelector('[data-nick="nick-dot"][data-nick-index="0"]').classList.add('active')
 
   return dots
 }

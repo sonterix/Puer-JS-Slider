@@ -2,11 +2,14 @@ import CONFIG from '@models/config'
 
 const createSlides = slides => {
   // Wrapper for slider
-  const sliderWrapper = document.createElement('div')
-  sliderWrapper.setAttribute('data-nick', 'nick-slider')
+  const slider = document.createElement('div')
+  slider.setAttribute('data-nick', 'nick-slider')
+
+  const sliderScreen = document.createElement('div')
+  sliderScreen.setAttribute('data-nick', 'nick-slider-screen')
 
   // Add styles based on config file
-  sliderWrapper.style.transition = `left ${CONFIG.transitionSpeed}ms ease`
+  sliderScreen.style.transition = `left ${CONFIG.transitionSpeed}ms ease`
 
   // Generate slides
   slides.forEach((slideUrl, index) => {
@@ -14,14 +17,18 @@ const createSlides = slides => {
 
     // Set attributes
     slide.setAttribute('data-nick', 'nick-slide')
-    slide.setAttribute('style', `background-image: url(${slideUrl})`)
     slide.setAttribute('data-nick-index', index)
+    slide.setAttribute('style', `background-image: url(${slideUrl})`)
 
     // Add slide to slides
-    sliderWrapper.appendChild(slide)
+    sliderScreen.appendChild(slide)
   })
 
-  return sliderWrapper
+  // Set first slide active
+  slider.append(sliderScreen)
+  slider.querySelector('[data-nick="nick-slide"][data-nick-index="0"]').classList.add('active')
+
+  return slider
 }
 
 export default createSlides

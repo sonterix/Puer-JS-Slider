@@ -3,9 +3,9 @@ import { isAnimation } from '@models/helpers/checkers'
 import CONFIG from '@models/config'
 
 const switchSlide = where => {
-  const sliderWrapper = document.querySelector('[data-nick="nick-slider"]')
-  const currentLeftValue = +getComputedStyle(sliderWrapper).left.replace(/[^\d.-]/g, '')
-  const currentActiveSlide = sliderWrapper.querySelector('[data-nick="nick-slide"].active')
+  const sliderScreen = document.querySelector('[data-nick="nick-slider"] [data-nick="nick-slider-screen"]')
+  const currentLeftValue = +getComputedStyle(sliderScreen).left.replace(/[^\d.-]/g, '')
+  const currentActiveSlide = sliderScreen.querySelector('[data-nick="nick-slide"].active')
 
   // Add nex or prev slide to the variable
   const futureActiveSlide =
@@ -16,7 +16,7 @@ const switchSlide = where => {
     setAnimationStatus(true)
 
     // Do + or - based on next or prev slide direction
-    sliderWrapper.style.left =
+    sliderScreen.style.left =
       where === 'next'
         ? `${currentLeftValue - futureActiveSlide.scrollWidth}px`
         : where === 'prev'
