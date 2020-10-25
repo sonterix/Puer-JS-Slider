@@ -1,4 +1,4 @@
-# Before use
+# Before usage
 To install all required dependencies use:
 ```
 npm install
