@@ -4,6 +4,7 @@ const createSlides = slides => {
   // Wrapper for slider
   const slider = document.createElement('div')
   slider.setAttribute('data-nick', 'nick-slider')
+  slider.style.cursor = CONFIG.loop ? 'grab' : 'auto'
 
   const sliderScreen = document.createElement('div')
   sliderScreen.setAttribute('data-nick', 'nick-slider-screen')

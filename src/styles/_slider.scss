@@ -15,6 +15,7 @@
       left: 0;
       width: inherit;
       height: inherit;
+      pointer-events: none;
 
       [data-nick='nick-slide'] {
         min-width: 100%;
@@ -23,6 +24,11 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        pointer-events: inherit;
+      }
+
+      &.swipping {
+        transition: none !important;
       }
     }
   }
