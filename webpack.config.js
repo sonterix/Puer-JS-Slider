@@ -2,12 +2,22 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   context: path.resolve(__dirname, 'src'),
   entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   module: {
     rules: [
