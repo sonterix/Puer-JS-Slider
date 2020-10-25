@@ -1,4 +1,3 @@
-// Handle to create controls for slider
 const createArrows = () => {
   const nextButn = document.createElement('button')
   const prevBtn = document.createElement('button')

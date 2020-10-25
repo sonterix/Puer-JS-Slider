@@ -1,6 +1,5 @@
 import CONFIG from '@models/config'
 
-// Handle to create slide elements base on array of images
 const createSlides = slides => {
   // Wrapper for slider
   const sliderWrapper = document.createElement('div')
@@ -10,14 +9,15 @@ const createSlides = slides => {
   sliderWrapper.style.transition = `left ${CONFIG.transitionSpeed}ms ease`
 
   // Generate slides
-  slides.forEach(slideUrl => {
+  slides.forEach((slideUrl, index) => {
     const slide = document.createElement('div')
 
     // Set attributes
     slide.setAttribute('data-nick', 'nick-slide')
     slide.setAttribute('style', `background-image: url(${slideUrl})`)
+    slide.setAttribute('data-nick-index', index)
 
-    // Add slide to wraooer
+    // Add slide to slides
     sliderWrapper.appendChild(slide)
   })
 
