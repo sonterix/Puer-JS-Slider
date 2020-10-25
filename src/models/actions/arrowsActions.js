@@ -1,9 +1,12 @@
 import { setAnimationStatus } from '@models/helpers/disablers'
 import { isAnimation } from '@models/helpers/checkers'
+import { toDot } from '@models/actions/dotsActions'
 import CONFIG from '@models/config'
 
 const switchSlide = where => {
-  const sliderScreen = document.querySelector('[data-nick="nick-slider"] [data-nick="nick-slider-screen"]')
+  const sliderScreen = document.querySelector(
+    '[data-nick="nick-wrapper"] [data-nick="nick-slider"] [data-nick="nick-slider-screen"]'
+  )
   const currentLeftValue = +getComputedStyle(sliderScreen).left.replace(/[^\d.-]/g, '')
   const currentActiveSlide = sliderScreen.querySelector('[data-nick="nick-slide"].active')
 
@@ -23,6 +26,9 @@ const switchSlide = where => {
         ? `${currentLeftValue + futureActiveSlide.scrollWidth}px`
         : '0px'
 
+    // Switch dot
+    toDot(futureActiveSlide.getAttribute('data-nick-index'))
+
     // Replace active class
     currentActiveSlide.classList.remove('active')
     futureActiveSlide.classList.add('active')
@@ -32,10 +38,35 @@ const switchSlide = where => {
   }
 }
 
+const switchSlideByIndex = index => {
+  // Disable actions to prevent new action before animationg ends
+  setAnimationStatus(true)
+
+  const sliderScreen = document.querySelector(
+    '[data-nick="nick-wrapper"] [data-nick="nick-slider"] [data-nick="nick-slider-screen"]'
+  )
+  const currentActiveSlide = sliderScreen.querySelector('[data-nick="nick-slide"].active')
+  const futureActiveSlide = sliderScreen.querySelector(`[data-nick="nick-slide"][data-nick-index="${index}"]`)
+  const newtLeftValue = -futureActiveSlide.scrollWidth * index
+
+  // Add new left porop to slider screen
+  sliderScreen.style.left = `${newtLeftValue}px`
+
+  // Replace active class
+  currentActiveSlide.classList.remove('active')
+  futureActiveSlide.classList.add('active')
+
+  // Enable actions
+  setTimeout(() => setAnimationStatus(false), CONFIG.transitionSpeed)
+}
+
 // Go to next slide
 const toNextSlide = () => !isAnimation() && switchSlide('next')
 
 // Go to prev slide
 const toPrevSlide = () => !isAnimation() && switchSlide('prev')
 
-export { toNextSlide, toPrevSlide }
+// Go slide by index
+const toSlide = index => !isAnimation() && switchSlideByIndex(index)
+
+export { toNextSlide, toPrevSlide, toSlide }

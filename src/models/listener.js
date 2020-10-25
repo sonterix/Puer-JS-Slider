@@ -1,8 +1,16 @@
 import { toNextSlide, toPrevSlide } from '@models/actions/arrowsActions'
+import { toDot } from '@models/actions/dotsActions'
 
 const listener = ({ target }) => {
-  target.closest('[data-nick="nick-next-btn"]') && toNextSlide()
-  target.closest('[data-nick="nick-prev-btn"]') && toPrevSlide()
+  const nextArrow = target.closest('[data-nick="nick-next-btn"]')
+  const prevArrow = target.closest('[data-nick="nick-prev-btn"]')
+  const dot = target.closest('[data-nick="nick-dot"]')
+
+  // Click on the arrow
+  nextArrow && toNextSlide()
+  prevArrow && toPrevSlide()
+  // Click on the dot
+  dot && toDot(dot.getAttribute('data-nick-index'))
 }
 
 export default listener
