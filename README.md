@@ -1,21 +1,21 @@
 # Before usage
-To install all required dependencies use:
+To install all required dependencies using:
 ```
 npm install
 ```
 
 # Scripts
-To run server with live reload on update use:
+To run a server with life reload on update using:
 ```
 npm run watch
 ```
 
-To build a bundle use:
+To build a bundle using:
 ```
 npm run build
 ```
 
 # LTS version
-To check current work version run:
+To check the current work version running:
 ```
 /dist/index.html
