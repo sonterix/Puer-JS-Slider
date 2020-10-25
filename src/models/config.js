@@ -1,5 +1,5 @@
 const CONFIG = {
-  loop: false, // loop slider
+  loop: true, // loop slider
   arrows: true, // show arrows
   dots: true, // show dots
   transitionSpeed: 400, // animation speed of the slide switch

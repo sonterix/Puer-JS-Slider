@@ -3,7 +3,11 @@ import { isAnimation } from '@models/helpers/checkers'
 import { toDot } from '@models/actions/dotsActions'
 import CONFIG from '@models/config'
 
+// Switch slide to prev or next
 const switchSlide = where => {
+  // Disable actions to prevent new action before animationg ends
+  setAnimationStatus(true)
+
   const sliderScreen = document.querySelector(
     '[data-nick="nick-wrapper"] [data-nick="nick-slider"] [data-nick="nick-slider-screen"]'
   )
@@ -11,20 +15,14 @@ const switchSlide = where => {
   const currentActiveSlide = sliderScreen.querySelector('[data-nick="nick-slide"].active')
 
   // Add nex or prev slide to the variable
-  const futureActiveSlide =
-    where === 'next' ? currentActiveSlide.nextSibling : where === 'prev' ? currentActiveSlide.previousSibling : null
+  const futureActiveSlide = where === 'prev' ? currentActiveSlide.previousSibling : currentActiveSlide.nextSibling
 
   if (futureActiveSlide) {
-    // Disable actions to prevent new action before animationg ends
-    setAnimationStatus(true)
-
     // Do + or - based on next or prev slide direction
     sliderScreen.style.left =
-      where === 'next'
-        ? `${currentLeftValue - futureActiveSlide.scrollWidth}px`
-        : where === 'prev'
+      where === 'prev'
         ? `${currentLeftValue + futureActiveSlide.scrollWidth}px`
-        : '0px'
+        : `${currentLeftValue - futureActiveSlide.scrollWidth}px`
 
     // Switch dot
     toDot(futureActiveSlide.getAttribute('data-nick-index'))
@@ -32,12 +30,31 @@ const switchSlide = where => {
     // Replace active class
     currentActiveSlide.classList.remove('active')
     futureActiveSlide.classList.add('active')
+  } else if (CONFIG.loop) {
+    // Get index of the last slide
+    const lastSliderIndex = sliderScreen.querySelectorAll('[data-nick="nick-slide"]').length - 1
+    // Get next slide
+    const loopSlide =
+      where === 'prev'
+        ? sliderScreen.querySelector(`[data-nick="nick-slide"][data-nick-index="${lastSliderIndex}"]`)
+        : sliderScreen.querySelector('[data-nick="nick-slide"][data-nick-index="0"]')
 
-    // Enable actions
-    setTimeout(() => setAnimationStatus(false), CONFIG.transitionSpeed)
+    // If no prev - switch to the last slider. If no next - switch to the first slide
+    sliderScreen.style.left = where === 'prev' ? `${-loopSlide.scrollWidth * lastSliderIndex}px` : '0px'
+
+    // Switch dot
+    toDot(loopSlide.getAttribute('data-nick-index'))
+
+    // Replace active class
+    currentActiveSlide.classList.remove('active')
+    loopSlide.classList.add('active')
   }
+
+  // Enable actions
+  setTimeout(() => setAnimationStatus(false), CONFIG.transitionSpeed)
 }
 
+// Switch slide by index
 const switchSlideByIndex = index => {
   // Disable actions to prevent new action before animationg ends
   setAnimationStatus(true)
