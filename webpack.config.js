@@ -1,18 +1,13 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'production',
   context: path.resolve(__dirname, 'src'),
   entry: {
-    nickSlider: {
-      import: './NickSlider.js',
-      filename: '[name][ext]'
-    },
-    demo: {
-      import: './demo/script.js',
-      filename: 'demo/[name][ext]'
-    }
+    nickSlider: './NickSlider.js',
+    demo: './demo/script.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -41,7 +36,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HTMLWebpackPlugin({ template: './demo/index.html' })],
+  plugins: [new HTMLWebpackPlugin({ template: './demo/index.html' }), new CleanWebpackPlugin()],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
