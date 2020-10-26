@@ -82,4 +82,9 @@ const swipeSlider = nickWrapper => {
   slider.addEventListener('touchend', swipeEnd)
 }
 
-export { swipeSlider }
+const autoplaySlider = speed =>
+  setInterval(() => {
+    toNextSlide()
+  }, speed)
+
+export { swipeSlider, autoplaySlider }

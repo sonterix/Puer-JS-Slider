@@ -2,7 +2,7 @@ import createSlides from '@models/creators/createSlides'
 import createDots from '@models/creators/createDots'
 import createArrows from '@models/creators/createArrows'
 import createWrapper from '@models/creators/createWrapper'
-import { swipeSlider } from '@models/actions/swipeActions'
+import { swipeSlider, autoplaySlider } from '@models/actions/swipeActions'
 import listener from '@models/listener'
 import CONFIG from '@models/config'
 
@@ -25,6 +25,9 @@ const NickSlider = (nickWrapper, nickSlidesURLs) => {
 
   // Slider swipe listener
   CONFIG.loop && swipeSlider(nickWrapper)
+
+  // Autoplay
+  CONFIG.autoplay && autoplaySlider(CONFIG.autoplaySpeed)
 
   // Return fuction to disable slider
   return () => nickWrapper.removeEventListener('click', listener)
