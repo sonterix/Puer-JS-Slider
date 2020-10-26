@@ -1,5 +1,5 @@
 import { toNextSlide, toPrevSlide, toSlide } from '@models/actions/arrowsActions'
-import { isAnimation } from '@models/helpers/checkers'
+import { isAnimation, isSwipping } from '@models/helpers/checkers'
 import { throttle } from '@models/helpers/disablers'
 
 const swipeSlider = nickWrapper => {
@@ -36,7 +36,7 @@ const swipeSlider = nickWrapper => {
     // Live swipe slide
     const currentLeftValue = +getComputedStyle(sliderScreen).left.replace(/[^\d.-]/g, '')
     sliderScreen.classList.add('swipping')
-    sliderScreen.style.left = `${currentLeftValue + diffX / 100}px`
+    sliderScreen.style.left = `${currentLeftValue + diffX / 50}px`
   }, 5)
 
   const swipeEnd = ({ changedTouches, offsetX, offsetY }) => {
@@ -84,7 +84,8 @@ const swipeSlider = nickWrapper => {
 
 const autoplaySlider = speed =>
   setInterval(() => {
-    toNextSlide()
+    // Prevent slide while animation or swipping
+    !isAnimation() && !isSwipping() && toNextSlide()
   }, speed)
 
 export { swipeSlider, autoplaySlider }
