@@ -6,6 +6,8 @@ import { swipeSlider, autoplaySlider } from '@models/actions/swipeActions'
 import listener from '@models/listener'
 import CONFIG from '@models/config'
 
+import '@styles/index.scss'
+
 const NickSlider = (nickWrapper, nickSlidesURLs) => {
   // Config wrapper
   createWrapper(nickWrapper)

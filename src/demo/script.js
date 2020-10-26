@@ -1,5 +1,5 @@
-import NickSlider from '@models/NickSlider'
-import './styles/index.scss'
+import NickSlider from '@/NickSlider'
+import '@demo/styles.scss'
 
 const slider = document.querySelector('#slider')
 const images = [

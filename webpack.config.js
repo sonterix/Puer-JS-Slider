@@ -4,15 +4,19 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'production',
   context: path.resolve(__dirname, 'src'),
-  entry: './index.js',
+  entry: {
+    nickSlider: {
+      import: './NickSlider.js',
+      filename: '[name][ext]'
+    },
+    demo: {
+      import: './demo/script.js',
+      filename: 'demo/[name][ext]'
+    }
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
+    filename: '[name].js'
   },
   optimization: {
     splitChunks: {
@@ -37,7 +41,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HTMLWebpackPlugin({ template: './index.html' })],
+  plugins: [new HTMLWebpackPlugin({ template: './demo/index.html' })],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
@@ -48,7 +52,8 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src/'),
       '@models': path.resolve(__dirname, 'src/models/'),
-      '@styles': path.resolve(__dirname, 'src/styles/')
+      '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@demo': path.resolve(__dirname, 'src/demo/')
     }
   }
 }
