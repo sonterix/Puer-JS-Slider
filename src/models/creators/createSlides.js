@@ -1,6 +1,6 @@
-import CONFIG from '@models/config'
-
 const createSlides = slides => {
+  const CONFIG = document.nickConfig
+
   // Wrapper for slider
   const slider = document.createElement('div')
   slider.setAttribute('data-nick', 'nick-slider')

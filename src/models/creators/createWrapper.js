@@ -1,6 +1,6 @@
-import CONFIG from '@models/config'
-
 const createWrapper = wrapper => {
+  const CONFIG = document.nickConfig
+
   // Clear tag
   wrapper.innerHTML = ''
   // Add attribute

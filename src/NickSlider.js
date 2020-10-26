@@ -4,11 +4,15 @@ import createArrows from '@models/creators/createArrows'
 import createWrapper from '@models/creators/createWrapper'
 import { swipeSlider, autoplaySlider } from '@models/actions/swipeActions'
 import listener from '@models/listener'
-import CONFIG from '@models/config'
+import DEFAULT_CONFIG from '@models/config'
 
 import '@styles/index.scss'
 
-const NickSlider = (nickWrapper, nickSlidesURLs) => {
+const NickSlider = (nickWrapper, nickSlidesURLs, nickConfig = {}) => {
+  // Store config for slider in document object
+  const CONFIG = { ...DEFAULT_CONFIG, ...nickConfig }
+  document.nickConfig = CONFIG
+
   // Config wrapper
   createWrapper(nickWrapper)
 

@@ -1,10 +1,11 @@
 import { setAnimationStatus } from '@models/helpers/disablers'
 import { isAnimation } from '@models/helpers/checkers'
 import { toDot } from '@models/actions/dotsActions'
-import CONFIG from '@models/config'
 
 // Switch slide by index
 const switchSlideByIndex = index => {
+  const CONFIG = document.nickConfig
+
   // Disable actions to prevent new action before animationg ends
   setAnimationStatus(true)
 
@@ -28,6 +29,8 @@ const switchSlideByIndex = index => {
 
 // Switch slide to prev or next
 const switchSlide = where => {
+  const CONFIG = document.nickConfig
+
   const sliderScreen = document.querySelector(
     '[data-nick="nick-wrapper"] [data-nick="nick-slider"] [data-nick="nick-slider-screen"]'
   )

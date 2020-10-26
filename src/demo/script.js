@@ -11,4 +11,7 @@ const images = [
 ]
 
 // Init slider and get function to disable slider
-const disableSlider = NickSlider(slider, images)
+const disableSlider = NickSlider(slider, images, {
+  loop: true,
+  dots: true
+})

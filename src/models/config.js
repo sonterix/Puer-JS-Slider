@@ -1,7 +1,7 @@
-const CONFIG = {
-  loop: true, // loop slider
+const DEFAULT_CONFIG = {
+  loop: false, // loop slider
   arrows: true, // show arrows
-  dots: true, // show dots
+  dots: false, // show dots
   transitionSpeed: 400, // animation speed of the slide switch
   autoplay: true, // auto swipe slider
   autoplaySpeed: 3000, // speed for auto swipe
@@ -10,4 +10,4 @@ const CONFIG = {
   height: '450px' // slider height
 }
 
-export default CONFIG
+export default DEFAULT_CONFIG
