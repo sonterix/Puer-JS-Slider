@@ -6,7 +6,7 @@ module.exports = {
   mode: 'production',
   context: path.resolve(__dirname, 'src'),
   entry: {
-    nickSlider: './NickSlider.js',
+    NickSlider: './NickSlider.js',
     demo: './demo/script.js'
   },
   output: {
